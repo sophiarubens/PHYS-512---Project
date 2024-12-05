@@ -207,12 +207,12 @@ freq = 1
 
 #STEP SIZES AND TIMING
 ##################
-H = 86400*13.5 #2 weeks
+H = 86400*13.5 #Step size
 t0 = 0.0
-tf = 5e6*H #Arbitrarily large so it just keeps running until I turn it off. 5e6 steps.
+tf = 3000*H #Number of steps.
 #################
 
 T, VEC = BulirschStoer(t0, vec0, tf, H, SolarSysMass)
-checkpointSave(t0, tf, H, VEC, 'SolarSystemSimulationLongRun', 0)
+checkpointSave(t0, tf, H, VEC, 'SolarSystemSimulation', 0)
 
 print('Simulation complete.')

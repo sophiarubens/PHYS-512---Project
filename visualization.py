@@ -3,23 +3,33 @@ import pandas as pd
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
-#Change to number of checkpoints you have
-num_checks = 54
-time = np.zeros((5000*num_checks, 1))
-rx = np.zeros((5000*num_checks, 9))
-ry = np.zeros((5000*num_checks, 9))
-vx = np.zeros((5000*num_checks, 9))
-vy = np.zeros((5000*num_checks, 9))
-
-#Import data iteratively
-for i in range(1, num_checks+1):
-    data_check = pd.read_csv(f'./SolarSystemSimulationCheckpoint{i}.csv')
-
-    time[5000*(i-1):5000*(i), 0] = data_check.iloc[:, 1].to_numpy()
-    rx[5000*(i-1):5000*(i), :] = data_check.iloc[:, 2:11].to_numpy()
-    ry[5000*(i-1):5000*(i), :] = data_check.iloc[:, 11:20].to_numpy()
-    vx[5000*(i-1):5000*(i), :] = data_check.iloc[:, 20:29].to_numpy()
-    vy[5000*(i-1):5000*(i), :] = data_check.iloc[:, 29:38].to_numpy()
+checkpointing=False
+if checkpointing==True:
+    #Change to number of checkpoints you have
+    num_checks = 54
+    time = np.zeros((5000*num_checks, 1))
+    rx = np.zeros((5000*num_checks, 9))
+    ry = np.zeros((5000*num_checks, 9))
+    vx = np.zeros((5000*num_checks, 9))
+    vy = np.zeros((5000*num_checks, 9))
+    
+    #Import data iteratively
+    for i in range(1, num_checks+1):
+        data_check = pd.read_csv(f'./SolarSystemSimulationCheckpoint{i}.csv')
+    
+        time[5000*(i-1):5000*(i), 0] = data_check.iloc[:, 1].to_numpy()
+        rx[5000*(i-1):5000*(i), :] = data_check.iloc[:, 2:11].to_numpy()
+        ry[5000*(i-1):5000*(i), :] = data_check.iloc[:, 11:20].to_numpy()
+        vx[5000*(i-1):5000*(i), :] = data_check.iloc[:, 20:29].to_numpy()
+        vy[5000*(i-1):5000*(i), :] = data_check.iloc[:, 29:38].to_numpy()
+else:
+    data_check = pd.read_csv(f'./SolarSystemSimulation.csv')
+    
+    time = data_check.iloc[:, 1].to_numpy()
+    rx = data_check.iloc[:, 2:11].to_numpy()
+    ry = data_check.iloc[:, 11:20].to_numpy()
+    vx = data_check.iloc[:, 20:29].to_numpy()
+    vy = data_check.iloc[:, 29:38].to_numpy()
 
 print('Import successful.')
 

@@ -13,7 +13,7 @@ vy = np.zeros((5000*num_checks, 9))
 
 #Import data iteratively
 for i in range(1, num_checks+1):
-    data_check = pd.read_csv(f'./Checkpoints3/SolarSystemSimulationCheckpoint{i}.csv')
+    data_check = pd.read_csv(f'./SolarSystemSimulationCheckpoint{i}.csv')
 
     time[5000*(i-1):5000*(i), 0] = data_check.iloc[:, 1].to_numpy()
     rx[5000*(i-1):5000*(i), :] = data_check.iloc[:, 2:11].to_numpy()

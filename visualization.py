@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from matplotlib.animation import FuncAnimation
 
+#Change to number of checkpoints you have
 num_checks = 54
 time = np.zeros((5000*num_checks, 1))
 rx = np.zeros((5000*num_checks, 9))
@@ -10,6 +11,7 @@ ry = np.zeros((5000*num_checks, 9))
 vx = np.zeros((5000*num_checks, 9))
 vy = np.zeros((5000*num_checks, 9))
 
+#Import data iteratively
 for i in range(1, num_checks+1):
     data_check = pd.read_csv(f'./Checkpoints3/SolarSystemSimulationCheckpoint{i}.csv')
 
@@ -21,6 +23,7 @@ for i in range(1, num_checks+1):
 
 print('Import successful.')
 
+#Only grab last 2000 points.
 time = time[-2000:, 0]
 rx = rx[-2000:, :]
 ry = ry[-2000:, :]
